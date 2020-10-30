@@ -1,0 +1,44 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: backend
+  namespace: dapr-workload
+  labels:
+    app: backend
+spec:
+  selector:
+    app: backend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: dapr-workload
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "backend"
+        dapr.io/app-port: "80"
+    spec:
+      containers:
+      - name: backend
+        image: moimhossain/dapr-backend:latest
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
