@@ -1,18 +1,26 @@
 
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
+using System.Threading.Tasks;
 using Dapr.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Text.Json;
+using Microsoft.Extensions.Logging;
 
-namespace Dapr.Backend
+namespace Dapr.Frontend
 {
     public class Startup
     {
         public void Configure(
-            IApplicationBuilder app, 
+            IApplicationBuilder app,
             IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -26,13 +34,9 @@ namespace Dapr.Backend
                 endpoints.MapSubscribeHandler();
 
                 endpoints.MapGet(DaprConstants.MethodNames.Balance, HttpActions.Balance);
-                endpoints
-                    .MapPost(DaprConstants.MethodNames.Deposit, HttpActions.Deposit)
-                    .WithTopic(DaprConstants.PubsubName, DaprConstants.MethodNames.Deposit);
-                endpoints
-                    .MapPost(DaprConstants.MethodNames.Withdraw, HttpActions.Withdraw)
-                    .WithTopic(DaprConstants.PubsubName, DaprConstants.MethodNames.Withdraw);
-            });                
+                endpoints.MapPost(DaprConstants.MethodNames.Deposit, HttpActions.Deposit);
+                endpoints.MapPost(DaprConstants.MethodNames.Withdraw, HttpActions.Withdraw);
+            });
         }
 
         public Startup(IConfiguration configuration)

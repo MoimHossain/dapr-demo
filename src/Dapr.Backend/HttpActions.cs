@@ -1,6 +1,7 @@
 ﻿
 
 using Dapr.Client;
+using Dapr.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -15,9 +16,9 @@ namespace Dapr.Backend
         {
             Console.WriteLine("Enter Balance");
             var client = context.RequestServices.GetRequiredService<DaprClient>();
+            var id = context.Request.Query["id"];
             var serializerOptions = context.RequestServices.GetRequiredService<JsonSerializerOptions>();
-
-            var id = (string)context.Request.RouteValues["id"];
+     
             Console.WriteLine("id is {0}", id);
             var account = await client.GetStateAsync<Account>(DaprConstants.StoreName, id);
             if (account == null)

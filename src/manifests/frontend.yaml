@@ -1,47 +1,47 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: backend
+  name: frontend
   namespace: dapr-workload
   labels:
-    app: backend
+    app: frontend
 spec:
   selector:
-    app: backend
+    app: frontend
   ports:
   - protocol: TCP
-    port: 8080
+    port: 80
     targetPort: 80
-  type: ClusterIP
+  type: LoadBalancer
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: frontend
   namespace: dapr-workload
   labels:
-    app: backend
+    app: frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: frontend
   template:
     metadata:
       labels:
-        app: backend
+        app: frontend
       annotations:
         dapr.io/enabled: "true"
-        dapr.io/app-id: "backend"
+        dapr.io/app-id: "frontend"
         # dapr.io/app-protocol: "grpc"
         dapr.io/app-max-concurrency: "10"
         dapr.io/app-port: "80"
         dapr.io/config: "tracing"
     spec:
       containers:
-      - name: backend
-        image: moimhossain/dapr-backend:v1
+      - name: frontend
+        image: moimhossain/dapr-frontend:v1
         ports:
         - containerPort: 80
         imagePullPolicy: Always
