@@ -10,12 +10,12 @@ echo "Build Tag $DockerImageTag received"
 echo "┌┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┐"
 echo "┊ Building images (Backend)                          │"
 echo "└┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┘"
-docker build -t moimhossain/dapr-backend:$DockerImageTag -f .\Dapr.Backend\Dockerfile . 
+docker build -t moimhossain/dapr-backend:$DockerImageTag -f ./Dapr.Backend/Dockerfile . 
 
 echo "┌┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┐"
 echo "┊ Building images (Frontend)                         │"
 echo "└┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┘"
-docker build -t moimhossain/dapr-frontend:$DockerImageTag -f .\Dapr.Frontend\Dockerfile .
+docker build -t moimhossain/dapr-frontend:$DockerImageTag -f ./Dapr.Frontend/Dockerfile .
 
 echo " "
 echo "┌┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┐"
