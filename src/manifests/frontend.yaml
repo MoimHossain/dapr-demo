@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: moimhossain/dapr-frontend:v1
+        image: moimhossain/dapr-frontend:latest
         ports:
         - containerPort: 80
         imagePullPolicy: Always
