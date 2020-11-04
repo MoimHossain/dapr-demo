@@ -52,6 +52,12 @@ kubectl apply -f namespace.yaml
 
 kubectl -n dapr-workload create secret docker-registry dockerhub --docker-server=https://index.docker.io/v1/ --docker-username=moimhossain --docker-password=$DockerPassword --docker-email=moimhossain@gmail.com
 
+echo "Changing directory.."
+cd ..
+cd components
+kubectl apply -f redis-state.yaml
+cd ..
+cd manifests
 
 kubectl apply -f redis.yaml
 kubectl apply -f zipkin.yaml
@@ -59,3 +65,4 @@ kubectl apply -f zipkin.yaml
 
 kubectl apply -f backend.yaml
 kubectl apply -f frontend.yaml
+
