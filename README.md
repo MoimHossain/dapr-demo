@@ -16,5 +16,5 @@ Some samples that I use to demo Dapr capabilities
 
 Docker IPC documenation: [LINK](https://docs.docker.com/engine/reference/run/#ipc-settings---ipc)
 
-![Image](./images/IPC.png)
+![Image](./images/ipc.png)
 
